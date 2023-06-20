@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, AutoModel
 # Flask
 app = Flask(__name__)
 
-# transormers model
+# transformers model
 model_id = "sentence-transformers/all-MiniLM-L6-v2"
 model = AutoModel.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)

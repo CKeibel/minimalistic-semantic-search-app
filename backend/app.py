@@ -1,6 +1,7 @@
 from flask import Flask, request
 from embedding_pipeline import SentenceEmbeddingPipeline
 from transformers import AutoTokenizer, AutoModel
+from database import Database
 
 
 # Flask
@@ -11,10 +12,15 @@ model_id = "sentence-transformers/all-MiniLM-L6-v2"
 model = AutoModel.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
+# milvus
+milvus_db = Database()
+
 @app.route("/")
 def init():
     pipeline = SentenceEmbeddingPipeline(model=model, tokenizer=tokenizer)
-    return str(pipeline("Hallo Welt!"))
+    vector = pipeline("A boy who became a wizard")[0].numpy()
+    
+    return milvus_db.search_by_vector(vector)
 
 
 @app.route("/search")

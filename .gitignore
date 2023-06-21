@@ -1,0 +1,7 @@
+.venv/
+backend/__pycache__
+.DS_Store
+TODOS.md
+backend/db/goodreads_data.csv
+backend/db/volumes
+*__pycache__

@@ -84,7 +84,7 @@ def main():
         "params": {"nlist": 128},
     }
     db.create_index("embeddings", index)
-
+    """
     db.load()
     search_params = {
         "metric_type": "L2",
@@ -96,14 +96,6 @@ def main():
 
     for re in iter(hits):
         print(re.entity.title)
-
-    """ GET COMPLETE DATA FOR INIT App
-    res = hello_milvus.query(
-        expr = "pk >= 0", 
-        output_fields = ["pk", "embeddings"]
-    )
-    for x in res:
-        print(x["pk"], x["embeddings"])
     """
 
 

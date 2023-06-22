@@ -1,13 +1,8 @@
 from pymilvus import (
     connections,
-    utility,
-    FieldSchema,
-    CollectionSchema,
-    DataType,
     Collection,
     Hits,
     Hit,
-    Milvus
 )
 from typing import List, Dict
 from numpy import ndarray
@@ -30,8 +25,9 @@ class Database:
 
 
     def get_all(self) -> List[Dict]:
-        pass
-
+        res = self.collection.query(expr= "pk >= 0", output_fields=["title", "author", "description"])
+        return res
+        
 
     def search_by_vector(self, search_vector: ndarray, num_results: int = 10) -> List[Dict]:
         search_params = {

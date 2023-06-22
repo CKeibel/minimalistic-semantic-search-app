@@ -34,7 +34,7 @@ class Database:
             "metric_type": "L2",
             "params": {"nprobe": num_results},
         }
-        results = self.collection.search([search_vector], "embeddings", search_params, limit=3, output_fields=["title", "author", "description"])
+        results = self.collection.search([search_vector], "embeddings", search_params, limit=10, output_fields=["title", "author", "description"])
         hits = Hits(results[0])
 
         return list(map(self.map_result, hits))
